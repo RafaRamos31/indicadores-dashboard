@@ -29,7 +29,7 @@ export const IndicadorPaper = ({titulo, descripcion, metas, progresos, medida, y
             <i className={`bi ${icons[medida]}`} style={{fontSize: '2rem'}}></i>
           </Col>
         </Row>
-        <ProgressMeter medida={medida} year={year} progreso={progresos[year][trimestre]} meta={metas[year][trimestre]} />
+        <ProgressMeter medida={medida} year={year} progreso={progresos[year][trimestre] || 0} meta={metas[year][trimestre] || 0} />
       </Paper>
     </Grid>
   )
