@@ -1,5 +1,6 @@
 import { Grid, Paper } from '@mui/material'
 import { ProgressBar, Row, Col } from 'react-bootstrap'
+import { ProgressMeter } from './ProgressMeter'
 
 export const IndicadorPaper = ({titulo, descripcion, metas, progresos, medida, year, trimestre}) => {
 
@@ -10,13 +11,6 @@ export const IndicadorPaper = ({titulo, descripcion, metas, progresos, medida, y
     'Proyectos': 'bi-building-gear',
   }
 
-  const currencyFormat = {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  };
-  
   return (
     <Grid size={{ sm: 12, lg: 6, xl: 4 }}>
       <Paper elevation={8} className='px-5 py-4 h-100' style={{textAlign: 'center', backgroundColor: '#A9CCE3'}}>
@@ -35,12 +29,7 @@ export const IndicadorPaper = ({titulo, descripcion, metas, progresos, medida, y
             <i className={`bi ${icons[medida]}`} style={{fontSize: '2rem'}}></i>
           </Col>
         </Row>
-        {
-          medida === 'Monetario' && year != "LOP" ?
-          <h5>{`${progresos[year][trimestre].toLocaleString('en-US', currencyFormat)} / ${metas[year][trimestre].toLocaleString('en-US', currencyFormat)}`}</h5>
-          :
-          <h5>{`${progresos[year][trimestre]} / ${metas[year][trimestre]}`}</h5>
-        }
+        <ProgressMeter medida={medida} year={year} progreso={progresos[year][trimestre]} meta={metas[year][trimestre]} />
       </Paper>
     </Grid>
   )
